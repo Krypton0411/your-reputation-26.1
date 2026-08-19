@@ -1,0 +1,120 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id "maven-publish"
+	id "com.modrinth.minotaur" version "2.+"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	maven {
+		url = "https://api.modrinth.com/maven"
+	}
+}
+
+loom {
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	// MC 26.1+ is unobfuscated - no mappings line needed
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Jade
+	implementation "maven.modrinth:jade:${project.jade_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesBaseName}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	repositories {
+		maven {
+			url = "file://$buildDir/maven"
+		}
+	}
+}
+
+task curseforge(type: Exec) {
+	environment "CURSEFORGE_API_TOKEN", project.findProperty("curseforge_token") ?: "Missing token"
+	commandLine "sh", "-c", """
+		set -eux
+
+		# install
+		MCMOD_RELEASER_VERSION="0.1.1"
+		curl -sL https://github.com/Aton-Kish/mcmod-releaser/releases/download/v\${MCMOD_RELEASER_VERSION}/mcmod-releaser_\${MCMOD_RELEASER_VERSION}_linux_amd64.tar.gz | tar xzf - mcmod-releaser
+		./mcmod-releaser --version
+
+		# release
+		./mcmod-releaser curseforge \
+		    --file "build/libs/${project.archives_base_name}-${project.version}.jar" \
+		    --project-id "${project.curseforge_id}" \
+		    --release-type "release" \
+		    --version "${project.version}" \
+		    --name "Your Reputation v${project.version}" \
+		    --changelog "[v${project.version}](https://github.com/Aton-Kish/your-reputation/releases/tag/v${java.net.URLEncoder.encode(project.version, "UTF-8")})" \
+		    --environments "Client,Server" \
+		    --loaders "Fabric" \
+		    --java-versions "Java 21" \
+		    --game-versions "26.1.2" \
+		    --dependencies "fabric-api=optional,jade=required"
+	"""
+}
+
+modrinth {
+	token = project.findProperty("modrinth_token") ?: "Missing token"
+
+	projectId = project.modrinth_id
+
+	uploadFile = jar
+	versionNumber = project.version
+	versionName = "Your Reputation v${project.version}"
+	versionType = "release"
+	changelog = "[v${project.version}](https://github.com/Aton-Kish/your-reputation/releases/tag/v" + java.net.URLEncoder.encode(project.version, "UTF-8") + ")"
+
+	gameVersions = ["26.1.2"]
+	loaders = ["fabric"]
+
+	dependencies {
+		optional.project "fabric-api"
+		required.project "jade"
+	}
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "reputation",
+  "version": "${version}",
+
+  "name": "Your Reputation",
+  "description": "a Jade plugin that displays your reputation on a tooltip with each villager.",
+  "authors": ["Aton-Kish"],
+  "contact": {
+    "homepage": "https://github.com/Aton-Kish/your-reputation",
+    "sources": "https://github.com/Aton-Kish/your-reputation",
+    "issues": "https://github.com/Aton-Kish/your-reputation/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/reputation/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "jade": ["atonkish.reputation.ReputationPlugin"]
+  },
+  "mixins": ["reputation.mixins.json"],
+
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "~26.1",
+    "java": ">=25",
+    "jade": "*"
+  },
+
+  "suggests": {
+    "fabric-api": "*"
+  }
+}
