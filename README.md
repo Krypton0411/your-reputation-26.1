@@ -1,5 +1,3 @@
-Disclaimer: Since the original author has not updated this mod for Minecraft 26.1.2, I ported this version myself. If this infringes any rights, please contact me and I will remove this repository.
-
 discord link：https://discord.gg/jzRvCJZ9dA
 
  # Your Reputation
