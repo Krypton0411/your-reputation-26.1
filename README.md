@@ -1,4 +1,5 @@
-﻿# Your Reputation
+Disclaimer: Since the original author has not updated this mod for Minecraft 26.1.2, I ported this version myself. If this infringes any rights, please contact me and I will remove this repository.
+ # Your Reputation
 
 Your Reputation is a [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) plugin that displays your reputation on the villagers' tooltips.
 
