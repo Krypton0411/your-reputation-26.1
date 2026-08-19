@@ -1,4 +1,4 @@
-name: build
+﻿name: build
 on:
   pull_request:
     branches:
@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     env:
-      JAVA_VERSION: '21'
+      JAVA_VERSION: '25'
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
