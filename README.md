@@ -1,11 +1,4 @@
-[![Mod Loader: Fabric](https://img.shields.io/static/v1?label=modloader&message=fabric&color=brightgreen)](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-![Mod Environment](https://img.shields.io/static/v1?label=environment&message=client%2Fserver&color=yellow)
-![Version](https://cf.way2muchnoise.eu/versions/579757.svg)
-[![CurseForge](https://cf.way2muchnoise.eu/579757.svg)](https://www.curseforge.com/minecraft/mc-mods/your-reputation)
-[![Modrinth](https://img.shields.io/modrinth/dt/MrLyhFlg?color=%2300AF5C&logo=modrinth)](https://modrinth.com/mod/your-reputation)
-[![MIT License](https://img.shields.io/static/v1?label=licence&message=MIT&color=blue)](./LICENSE)
-
-# Your Reputation
+﻿# Your Reputation
 
 Your Reputation is a [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) plugin that displays your reputation on the villagers' tooltips.
 
