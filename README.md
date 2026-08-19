@@ -18,6 +18,11 @@ And then, iron golems will get angry and start attacking you...
 
 ![angry golem](./images/angry_golem.png)
 
+
+## Disclaimer
+
+Since the original author has not updated this mod for Minecraft 26.1.2, I ported this version myself. If this infringes any rights, please contact me and I will remove this repository.
+
 ## License
 
 Your Reputation mod is licensed under the MIT License, see [LICENSE](./LICENSE).
