@@ -1,0 +1,13 @@
+{
+  "config.jade.plugin_reputation.iron_golem": "Zorn des Eisengolems",
+  "config.jade.plugin_reputation.villager_reputation": "Ruf beim Dorfbewohner",
+  "config.jade.plugin_reputation.villager_snitch": "Dorfbewohner Bezeichnung",
+  "entity.reputation.villager.snitch": "Petze",
+  "entity.reputation.villager.reputation.friendly": "Freundlich",
+  "entity.reputation.villager.reputation.trustworthy": "Vertrauenswürdig",
+  "entity.reputation.villager.reputation.neutral": "Neutral",
+  "entity.reputation.villager.reputation.suspicious": "Misstrauisch",
+  "entity.reputation.villager.reputation.hostile": "Feindselig",
+  "entity.reputation.villager.reputation.unknown": "Unbekannt",
+  "entity.reputation.iron_golem.angry": "Wütend"
+}
